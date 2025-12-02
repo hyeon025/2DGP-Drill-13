@@ -10,10 +10,11 @@ class Ball:
     def __init__(self, x = None, y = None):
         if Ball.image == None:
             Ball.image = load_image('ball21x21.png')
-        self.x = x if x else random.randint(50, common.court.w - 50)
-        self.y = y if y else random.randint(50, common.court.h - 50)
+        self.x = random.randint(50, common.court.w - 50)
+        self.y = random.randint(50, common.court.h - 50)
 
     def draw(self):
+
         self.image.draw(self.x, self.y)
         draw_rectangle(*self.get_bb())
 
@@ -26,6 +27,4 @@ class Ball:
     def handle_collision(self, group, other):
         match group:
             case 'boy:ball':
-                game_world.remove_object(self)
-            case 'zombie:ball':
                 game_world.remove_object(self)
